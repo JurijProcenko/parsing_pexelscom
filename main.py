@@ -4,6 +4,8 @@
 # do not accumulate in the url
 
 import requests
+import time
+import random
 import os
 from tqdm import tqdm
 import math
@@ -38,6 +40,7 @@ def parse_pexelscom(query=''):
 
 def save_images(img_list=[], imgs_dir_path=''):
     for item_url in tqdm(img_list):
+        time.sleep(random.randint(1, 10))
         response = requests.get(url=item_url)
         if response.status_code == 200:
             with open(f'./{imgs_dir_path}/{item_url.split("-")[-1]}', 'wb') as f:
